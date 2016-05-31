@@ -19,7 +19,10 @@ SOURCES +=\
     source/app/main.cpp \
     source/logic/business_logic.cpp \
     source/gui/main_window.cpp \
-    source/gui/widget_central.cpp
+    source/gui/widget_central.cpp \
+    source/gui/panel_ware.cpp \
+    source/gui/listview_ware.cpp \
+    source/gui/panel_ware_detail.cpp
 
 HEADERS  += \
     source/app/application.h \
@@ -27,7 +30,10 @@ HEADERS  += \
     source/app/application_params.h \
     source/logic/business_logic.h \
     source/gui/main_window.h \
-    source/gui/widget_central.h
+    source/gui/widget_central.h \
+    source/gui/panel_ware.h \
+    source/gui/listview_ware.h \
+    source/gui/panel_ware_detail.h
 
 
 MOC_DIR = ./xmoc

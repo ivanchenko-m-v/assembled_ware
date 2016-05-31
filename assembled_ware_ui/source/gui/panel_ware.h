@@ -1,24 +1,24 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 24-05-2016
+///		Date create	: 31-05-2016
 ///		Date update	: 31-05-2016
 ///		Comment		:
 /// ============================================================================
-#ifndef __WIDGET_CENTRAL_H__
-#define __WIDGET_CENTRAL_H__
+#ifndef __PANEL_WARE_H__
+#define __PANEL_WARE_H__
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace assembled_ware
 {
 
-class panel_ware;
-class panel_ware_detail;
+class listview_ware;
 /// ############################################################################
-///			class widget_central
+///			class panel_ware
 /// ############################################################################
-    class widget_central : public QWidget
+    class panel_ware : public QWidget
     {
     Q_OBJECT
     /// ========================================================================
@@ -26,13 +26,13 @@ class panel_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        widget_central( const widget_central &rhs );
+        panel_ware( const panel_ware &rhs );
 
 	public:
         /// --------------------------------------------------------------------
-        explicit widget_central(QWidget *parent = 0);
+        explicit panel_ware(QWidget *parent = 0);
         /// --------------------------------------------------------------------
-        virtual ~widget_central( );
+        virtual ~panel_ware( );
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -42,8 +42,8 @@ class panel_ware_detail;
         void initialize( );
         void init_layout();
         void init_connections( );
-        QWidget* widget_panel_ware( );
-        QWidget* widget_panel_ware_detail( );
+        QWidget* widget_listview_ware( );
+        QWidget* widget_buttons( );
 
     /// ========================================================================
     ///		PROPERTIES
@@ -57,7 +57,7 @@ class panel_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        widget_central& operator=( const widget_central &rhs );
+        panel_ware& operator=( const panel_ware &rhs );
 
     /// ========================================================================
     ///		EVENTS
@@ -75,16 +75,19 @@ class panel_ware_detail;
     ///			FIELDS
     /// ========================================================================
     private:
-		const int _STRETCH_PANEL_WARE = 250;//25% of screen width
-		const int _STRETCH_PANEL_WARE_DETAIL = 750;//75% of screen width
+		const int _CONTROL_SPACE = 5;
+		const int _CONTROL_MARGIN = 5;
+		const int _STRETCH_LIST = 1000;
+		const int _STRETCH_BUTTONS = 10;
 
-		panel_ware			*_panel_ware = nullptr;
-		panel_ware_detail	*_panel_ware_detail = nullptr;
+		listview_ware	*_list_ware = nullptr;
+		QPushButton		*_btn_add = nullptr;
+		QPushButton		*_btn_remove = nullptr;
 
-	};//class widget_central
+	};//class panel_ware
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
 }//namespace assembled_ware
 
-#endif // __WIDGET_CENTRAL_H__
+#endif // __PANEL_WARE_H__

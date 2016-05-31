@@ -1,24 +1,22 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 24-05-2016
+///		Date create	: 31-05-2016
 ///		Date update	: 31-05-2016
 ///		Comment		:
 /// ============================================================================
-#ifndef __WIDGET_CENTRAL_H__
-#define __WIDGET_CENTRAL_H__
+#ifndef __LISTVIEW_WARE_H__
+#define __LISTVIEW_WARE_H__
 
-#include <QWidget>
+#include <QTableWidget>
 
 namespace assembled_ware
 {
 
-class panel_ware;
-class panel_ware_detail;
 /// ############################################################################
-///			class widget_central
+///			class listview_ware
 /// ############################################################################
-    class widget_central : public QWidget
+    class listview_ware : public QTableWidget
     {
     Q_OBJECT
     /// ========================================================================
@@ -26,13 +24,13 @@ class panel_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        widget_central( const widget_central &rhs );
+        listview_ware( const listview_ware &rhs );
 
 	public:
         /// --------------------------------------------------------------------
-        explicit widget_central(QWidget *parent = 0);
+        explicit listview_ware(QWidget *parent = 0);
         /// --------------------------------------------------------------------
-        virtual ~widget_central( );
+        virtual ~listview_ware( );
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -42,8 +40,6 @@ class panel_ware_detail;
         void initialize( );
         void init_layout();
         void init_connections( );
-        QWidget* widget_panel_ware( );
-        QWidget* widget_panel_ware_detail( );
 
     /// ========================================================================
     ///		PROPERTIES
@@ -57,7 +53,7 @@ class panel_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        widget_central& operator=( const widget_central &rhs );
+        listview_ware& operator=( const listview_ware &rhs );
 
     /// ========================================================================
     ///		EVENTS
@@ -75,16 +71,11 @@ class panel_ware_detail;
     ///			FIELDS
     /// ========================================================================
     private:
-		const int _STRETCH_PANEL_WARE = 250;//25% of screen width
-		const int _STRETCH_PANEL_WARE_DETAIL = 750;//75% of screen width
 
-		panel_ware			*_panel_ware = nullptr;
-		panel_ware_detail	*_panel_ware_detail = nullptr;
-
-	};//class widget_central
+	};//class listview_ware
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
 }//namespace assembled_ware
 
-#endif // __WIDGET_CENTRAL_H__
+#endif // __LISTVIEW_WARE_H__

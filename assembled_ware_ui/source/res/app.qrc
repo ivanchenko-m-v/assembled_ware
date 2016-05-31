@@ -15,5 +15,7 @@
         <file>images/32x32/office-chart-pie.png</file>
         <file>images/32x32/media-floppy.png</file>
         <file>images/32x32/mail-attachment.png</file>
+        <file>images/32x32/list-add.png</file>
+        <file>images/32x32/list-remove.png</file>
     </qresource>
 </RCC>

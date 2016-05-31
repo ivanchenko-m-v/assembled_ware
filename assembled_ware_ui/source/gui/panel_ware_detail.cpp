@@ -1,10 +1,11 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 24-05-2016
+///		Date create	: 31-05-2016
 ///		Date update	: 31-05-2016
 ///		Comment		:
 /// ============================================================================
+#include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -14,14 +15,12 @@
 //#include "application.h"
 //#include "business_logic.h"
 
-#include "widget_central.h"
-#include "panel_ware.h"
 #include "panel_ware_detail.h"
 
 namespace assembled_ware
 {
 /// ############################################################################
-///			class widget_central
+///			class panel_ware_detail
 /// ############################################################################
 
     /// ========================================================================
@@ -29,17 +28,17 @@ namespace assembled_ware
     /// ========================================================================
 
     /// ------------------------------------------------------------------------
-	///	widget_central( )
+	///	panel_ware_detail( )
     /// ------------------------------------------------------------------------
-    widget_central::widget_central(QWidget *parent) :
+    panel_ware_detail::panel_ware_detail(QWidget *parent) :
         QWidget(parent)
     {
         this->initialize( );
     }
     /// ------------------------------------------------------------------------
-    ///	~widget_central( )
+    ///	~panel_ware_detail( )
     /// ------------------------------------------------------------------------
-    widget_central::~widget_central( )
+    panel_ware_detail::~panel_ware_detail( )
     {
 
     }
@@ -50,7 +49,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// initialize( )
     /// ------------------------------------------------------------------------
-    void widget_central::initialize( )
+    void panel_ware_detail::initialize( )
     {
         this->init_layout( );
 
@@ -60,39 +59,15 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_layout( )
     /// ------------------------------------------------------------------------
-    void widget_central::init_layout( )
+    void panel_ware_detail::init_layout( )
     {
-		QHBoxLayout *layout = new QHBoxLayout;
-
-		layout->addWidget( this->widget_panel_ware( ), this->_STRETCH_PANEL_WARE );
-		layout->addWidget( this->widget_panel_ware_detail( ), this->_STRETCH_PANEL_WARE_DETAIL );
-
-		this->setLayout( layout );
     }
 
     /// ------------------------------------------------------------------------
     /// init_connections( )
     /// ------------------------------------------------------------------------
-    void widget_central::init_connections( )
+    void panel_ware_detail::init_connections( )
     {
-    }
-
-    /// ------------------------------------------------------------------------
-    /// widget_panel_ware( )
-    /// ------------------------------------------------------------------------
-    QWidget* widget_central::widget_panel_ware( )
-    {
-		this->_panel_ware = new panel_ware(this);
-		return this->_panel_ware;
-    }
-
-    /// ------------------------------------------------------------------------
-    /// widget_panel_ware_detail( )
-    /// ------------------------------------------------------------------------
-    QWidget* widget_central::widget_panel_ware_detail( )
-    {
-		this->_panel_ware_detail = new panel_ware_detail(this);
-		return this->_panel_ware_detail;
     }
 
     /// ========================================================================
@@ -101,7 +76,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// keyPressEvent ( QKeyEvent * event )
     /// ------------------------------------------------------------------------
-    void widget_central::keyPressEvent( QKeyEvent * event )
+    void panel_ware_detail::keyPressEvent( QKeyEvent * event )
     {
         /*
         if( event->key( ) == Qt::Key_N )

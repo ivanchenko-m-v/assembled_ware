@@ -1,10 +1,11 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 24-05-2016
+///		Date create	: 31-05-2016
 ///		Date update	: 31-05-2016
 ///		Comment		:
 /// ============================================================================
+#include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -14,14 +15,12 @@
 //#include "application.h"
 //#include "business_logic.h"
 
-#include "widget_central.h"
-#include "panel_ware.h"
-#include "panel_ware_detail.h"
+#include "listview_ware.h"
 
 namespace assembled_ware
 {
 /// ############################################################################
-///			class widget_central
+///			class listview_ware
 /// ############################################################################
 
     /// ========================================================================
@@ -29,17 +28,17 @@ namespace assembled_ware
     /// ========================================================================
 
     /// ------------------------------------------------------------------------
-	///	widget_central( )
+	///	listview_ware( )
     /// ------------------------------------------------------------------------
-    widget_central::widget_central(QWidget *parent) :
-        QWidget(parent)
+    listview_ware::listview_ware(QWidget *parent) :
+        QTableWidget(parent)
     {
         this->initialize( );
     }
     /// ------------------------------------------------------------------------
-    ///	~widget_central( )
+    ///	~listview_ware( )
     /// ------------------------------------------------------------------------
-    widget_central::~widget_central( )
+    listview_ware::~listview_ware( )
     {
 
     }
@@ -50,7 +49,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// initialize( )
     /// ------------------------------------------------------------------------
-    void widget_central::initialize( )
+    void listview_ware::initialize( )
     {
         this->init_layout( );
 
@@ -60,39 +59,15 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_layout( )
     /// ------------------------------------------------------------------------
-    void widget_central::init_layout( )
+    void listview_ware::init_layout( )
     {
-		QHBoxLayout *layout = new QHBoxLayout;
-
-		layout->addWidget( this->widget_panel_ware( ), this->_STRETCH_PANEL_WARE );
-		layout->addWidget( this->widget_panel_ware_detail( ), this->_STRETCH_PANEL_WARE_DETAIL );
-
-		this->setLayout( layout );
     }
 
     /// ------------------------------------------------------------------------
     /// init_connections( )
     /// ------------------------------------------------------------------------
-    void widget_central::init_connections( )
+    void listview_ware::init_connections( )
     {
-    }
-
-    /// ------------------------------------------------------------------------
-    /// widget_panel_ware( )
-    /// ------------------------------------------------------------------------
-    QWidget* widget_central::widget_panel_ware( )
-    {
-		this->_panel_ware = new panel_ware(this);
-		return this->_panel_ware;
-    }
-
-    /// ------------------------------------------------------------------------
-    /// widget_panel_ware_detail( )
-    /// ------------------------------------------------------------------------
-    QWidget* widget_central::widget_panel_ware_detail( )
-    {
-		this->_panel_ware_detail = new panel_ware_detail(this);
-		return this->_panel_ware_detail;
     }
 
     /// ========================================================================
@@ -101,7 +76,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// keyPressEvent ( QKeyEvent * event )
     /// ------------------------------------------------------------------------
-    void widget_central::keyPressEvent( QKeyEvent * event )
+    void listview_ware::keyPressEvent( QKeyEvent * event )
     {
         /*
         if( event->key( ) == Qt::Key_N )
