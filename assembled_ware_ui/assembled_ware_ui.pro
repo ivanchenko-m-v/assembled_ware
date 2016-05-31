@@ -33,7 +33,8 @@ HEADERS  += \
     source/gui/widget_central.h \
     source/gui/panel_ware.h \
     source/gui/listview_ware.h \
-    source/gui/panel_ware_detail.h
+    source/gui/panel_ware_detail.h \
+    source/data_objects/data_ware.h
 
 
 MOC_DIR = ./xmoc
