@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 31-05-2016
-///		Date update	: 31-05-2016
+///		Date update	: 01-06-2016
 ///		Comment		:
 /// ============================================================================
 #ifndef __DATA_WARE_H__
@@ -14,6 +14,8 @@
 #include <QTime>
 #include <QVector>
 #include <QVariant>
+
+#include "data_collection.h"
 
 namespace assembled_ware
 {
@@ -275,6 +277,9 @@ namespace assembled_ware
 /// ############################################################################
 ///			data_ware_collection
 /// ############################################################################
+///
+    using data_ware_collection = espira::data_objects::data_collection<data_ware>;
+    /*
     class data_ware_collection
 	{
     /// ========================================================================
@@ -381,6 +386,7 @@ namespace assembled_ware
         QList<data_ware *>	*_data;
 
     };//class data_ware_collection
+    */
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
