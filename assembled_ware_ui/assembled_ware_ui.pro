@@ -10,7 +10,9 @@ QMAKE_CXXFLAGS += -std=c++11
 
 INCLUDEPATH += source/app \
 				source/gui \
-				source/logic
+				source/logic \
+				source/data_objects \
+				source/data_models
 
 SOURCES +=\
     source/app/application.cpp \
@@ -22,7 +24,9 @@ SOURCES +=\
     source/gui/widget_central.cpp \
     source/gui/panel_ware.cpp \
     source/gui/listview_ware.cpp \
-    source/gui/panel_ware_detail.cpp
+    source/gui/panel_ware_detail.cpp \
+    source/data_models/data_model_ware.cpp \
+    source/gui/delegate_line_edit.cpp
 
 HEADERS  += \
     source/app/application.h \
@@ -35,7 +39,9 @@ HEADERS  += \
     source/gui/listview_ware.h \
     source/gui/panel_ware_detail.h \
     source/data_objects/data_ware.h \
-    source/data_objects/data_collection.h
+    source/data_objects/data_collection.h \
+    source/data_models/data_model_ware.h \
+    source/gui/delegate_line_edit.h
 
 
 MOC_DIR = ./xmoc

@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 01-06-2016
-///		Date update	: 01-06-2016
+///		Date update	: 02-06-2016
 ///		Comment		:
 /// ============================================================================
 
@@ -35,8 +35,7 @@ namespace data_objects
         data_collection( const data_collection &rhs );
     public:
     /// ------------------------------------------------------------------------
-        data_collection( ) :
-            _data( 0 )
+        data_collection( )
         { }
     /// ------------------------------------------------------------------------
         virtual ~data_collection( )
@@ -49,7 +48,7 @@ namespace data_objects
     /// ------------------------------------------------------------------------
         int size( ) const
         {
-            if( !this->_data )
+            if( this->_data == nullptr )
             {
                 return 0;
             }
@@ -59,20 +58,20 @@ namespace data_objects
     /// ------------------------------------------------------------------------
         void free_data_pointer( )
         {
-            if( !this->_data )
+            if( this->_data == nullptr )
             {
                 return;
             }
             //free pointer to list
             //but save pointers on list elements
             delete _data;
-            this->_data = 0;
+            this->_data = nullptr;
         }
 
     /// ------------------------------------------------------------------------
         void free( )
         {
-            if( !this->_data )
+            if( this->_data == nullptr )
             {
                 return;
             }
@@ -93,27 +92,29 @@ namespace data_objects
     /// ------------------------------------------------------------------------
         void append( DATA_OBJECT *r )
         {
-            if( !this->_data )
+            if( this->_data == nullptr )
             {
-                this->_data = new list_object;
+                this->_data = new list_object<DATA_OBJECT>;
             }
             this->_data->append( r );
         }
 
     /// ------------------------------------------------------------------------
-        list_object* list( )
+        list_object<DATA_OBJECT>* list( )
         { return this->_data; }
 
     /// ------------------------------------------------------------------------
-        using  iterator = list_object::iterator;
+	template<typename T>
+        using iterator = typename list_object<T>::iterator;
+
     /// ------------------------------------------------------------------------
-        iterator begin( )
+        iterator<DATA_OBJECT> begin( )
         {
             return this->_data->begin( );
         }
 
     /// ------------------------------------------------------------------------
-        iterator end( )
+        iterator<DATA_OBJECT> end( )
         {
             return this->_data->end( );
         }
@@ -128,7 +129,7 @@ namespace data_objects
     ///			FIELDS
     /// ========================================================================
     private:
-        list_object	*_data;
+        list_object<DATA_OBJECT>	*_data = nullptr;
 
     };//class data_collection
 /// ############################################################################
