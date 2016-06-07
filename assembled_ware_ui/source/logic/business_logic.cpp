@@ -1,7 +1,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 24-05-2016
-///		Date update	: 02-06-2016
+///		Date update	: 06-06-2016
 ///		Comment		:
 /// ============================================================================
 #include <QDebug>
@@ -116,6 +116,7 @@ namespace assembled_ware
         data_ware_collection *p_coll = nullptr;
         try
 		{
+			//get data collection from data provider
 			p_coll = new data_ware_collection;
 			p_coll->append( new data_ware( {"1", "hash_1", "assembled ware 1"} ) );
 			p_coll->append( new data_ware( {"2", "hash_2", "assembled ware 2"} ) );

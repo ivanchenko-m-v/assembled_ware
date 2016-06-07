@@ -1,24 +1,22 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
-///		Date update	: 31-05-2016
+///		Date create	: 07-06-2016
+///		Date update	: 07-06-2016
 ///		Comment		:
 /// ============================================================================
-#ifndef __PANEL_WARE_DETAIL_H__
-#define __PANEL_WARE_DETAIL_H__
+#ifndef __LISTVIEW_WARE_DETAIL_H__
+#define __LISTVIEW_WARE_DETAIL_H__
 
-#include <QWidget>
+#include <QTableView>
 
 namespace assembled_ware
 {
 
-class panel_ware_properties;
-class listview_ware_detail;
 /// ############################################################################
-///			class panel_ware_detail
+///			class listview_ware_detail
 /// ############################################################################
-    class panel_ware_detail : public QWidget
+    class listview_ware_detail : public QTableView
     {
     Q_OBJECT
     /// ========================================================================
@@ -26,13 +24,13 @@ class listview_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail( const panel_ware_detail &rhs );
+        listview_ware_detail( const listview_ware_detail &rhs );
 
 	public:
         /// --------------------------------------------------------------------
-        explicit panel_ware_detail(QWidget *parent = 0);
+        explicit listview_ware_detail(QWidget *parent = 0);
         /// --------------------------------------------------------------------
-        virtual ~panel_ware_detail( );
+        virtual ~listview_ware_detail( );
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -40,30 +38,34 @@ class listview_ware_detail;
     private:
         /// --------------------------------------------------------------------
         void initialize( );
-        void init_layout();
+        void init_view( );
         void init_connections( );
-        QWidget* init_listview_detail( );
-        QWidget* init_panel_properties( );
 
     /// ========================================================================
     ///		PROPERTIES
     /// ========================================================================
-    private:
-
 	public:
+	/// ------------------------------------------------------------------------
 
     /// ========================================================================
     ///		OPERATORS
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail& operator=( const panel_ware_detail &rhs );
+        listview_ware_detail& operator=( const listview_ware_detail &rhs );
 
     /// ========================================================================
     ///		EVENTS
     /// ========================================================================
 	protected:
         virtual void keyPressEvent ( QKeyEvent * event );
+		virtual void resizeEvent( QResizeEvent *event );
+
+	/// ========================================================================
+	///		SIGNALS
+	/// ========================================================================
+	signals:
+	/// ------------------------------------------------------------------------
 
     /// ========================================================================
     ///		SLOTS
@@ -75,17 +77,11 @@ class listview_ware_detail;
     ///			FIELDS
     /// ========================================================================
     private:
-		const int _STRETCH_LABEL = 10;
-		const int _STRETCH_LIST = 1000;
-		const int _STRETCH_PROPERTIES = 10;
 
-		panel_ware_properties	*_panel_prop = nullptr;
-		listview_ware_detail	*_lv_wd = nullptr;
-
-	};//class panel_ware_detail
+	};//class listview_ware_detail
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
 }//namespace assembled_ware
 
-#endif // __PANEL_WARE_DETAIL_H__
+#endif // __LISTVIEW_WARE_DETAIL_H__

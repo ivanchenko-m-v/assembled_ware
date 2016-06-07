@@ -1,8 +1,8 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
-///		Date update	: 31-05-2016
+///		Date create	: 07-06-2016
+///		Date update	: 07-06-2016
 ///		Comment		:
 /// ============================================================================
 #include <QLabel>
@@ -15,14 +15,12 @@
 //#include "application.h"
 //#include "business_logic.h"
 
-#include "panel_ware_detail.h"
 #include "panel_ware_properties.h"
-#include "listview_ware_detail.h"
 
 namespace assembled_ware
 {
 /// ############################################################################
-///			class panel_ware_detail
+///			class panel_ware_properties
 /// ############################################################################
 
     /// ========================================================================
@@ -30,17 +28,17 @@ namespace assembled_ware
     /// ========================================================================
 
     /// ------------------------------------------------------------------------
-	///	panel_ware_detail( )
+	///	panel_ware_properties( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::panel_ware_detail(QWidget *parent) :
+    panel_ware_properties::panel_ware_properties(QWidget *parent) :
         QWidget(parent)
     {
         this->initialize( );
     }
     /// ------------------------------------------------------------------------
-    ///	~panel_ware_detail( )
+    ///	~panel_ware_properties( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::~panel_ware_detail( )
+    panel_ware_properties::~panel_ware_properties( )
     {
 
     }
@@ -51,7 +49,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// initialize( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::initialize( )
+    void panel_ware_properties::initialize( )
     {
         this->init_layout( );
 
@@ -61,12 +59,52 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_layout( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_layout( )
+    void panel_ware_properties::init_layout( )
     {
 		QVBoxLayout *layout = new QVBoxLayout;
-
-		layout->addWidget( this->init_panel_properties( ), this->_STRETCH_PROPERTIES );
-		layout->addWidget( this->init_listview_detail( ), this->_STRETCH_LIST );
+		//
+		//_txt_ware_name
+		//
+		QLabel *lbl = new QLabel( tr("Ware name:"), this );
+		this->_txt_ware_name = new QLabel;
+		QHBoxLayout *hl = new QHBoxLayout;
+		hl->addWidget( lbl, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		hl->addWidget( this->_txt_ware_name, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		layout->addLayout( hl );
+		//
+		//_txt_article
+		//
+		lbl = new QLabel( tr("Article:"), this );
+		this->_txt_article = new QLabel;
+		hl = new QHBoxLayout;
+		hl->addWidget( lbl, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		hl->addWidget( this->_txt_article, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		layout->addLayout( hl );
+		//
+		//_txt_barcode
+		//
+		lbl = new QLabel( tr("Bar-code:"), this );
+		this->_txt_barcode = new QLabel;
+		hl = new QHBoxLayout;
+		hl->addWidget( lbl, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		hl->addWidget( this->_txt_barcode, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		layout->addLayout( hl );
+		//
+		//_txt_percent
+		//
+		lbl = new QLabel( tr("Margin Percent:"), this );
+		this->_txt_percent = new QLineEdit;
+		hl = new QHBoxLayout;
+		hl->addWidget( lbl, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		hl->addWidget( this->_txt_percent, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		//
+		//_txt_sum
+		//
+		lbl = new QLabel( tr("Ware price total:"), this );
+		this->_txt_sum = new QLineEdit;
+		hl->addWidget( lbl, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		hl->addWidget( this->_txt_sum, 50, Qt::AlignLeft|Qt::AlignVCenter );
+		layout->addLayout( hl );
 
 		this->setLayout( layout );
     }
@@ -74,35 +112,8 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_connections( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_connections( )
+    void panel_ware_properties::init_connections( )
     {
-    }
-
-    /// ------------------------------------------------------------------------
-    /// init_listview_detail( )
-    /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::init_listview_detail( )
-    {
-		QLabel *lbl = new QLabel( tr("Ware detail list:"), this );
-		this->_lv_wd = new listview_ware_detail(this);
-
-		QVBoxLayout *layout = new QVBoxLayout;
-		layout->addWidget(lbl, this->_STRETCH_LABEL);
-		layout->addWidget(this->_lv_wd, this->_STRETCH_LIST);
-
-		QWidget *wgt = new QWidget;
-		wgt->setLayout( layout );
-
-		return wgt;
-    }
-
-    /// ------------------------------------------------------------------------
-    /// init_panel_properties( )
-    /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::init_panel_properties( )
-    {
-		this->_panel_prop = new panel_ware_properties;
-		return this->_panel_prop;
     }
 
     /// ========================================================================
@@ -111,7 +122,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// keyPressEvent ( QKeyEvent * event )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::keyPressEvent( QKeyEvent * event )
+    void panel_ware_properties::keyPressEvent( QKeyEvent * event )
     {
         /*
         if( event->key( ) == Qt::Key_N )

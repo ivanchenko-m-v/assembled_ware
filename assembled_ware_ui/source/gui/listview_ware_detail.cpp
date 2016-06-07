@@ -1,28 +1,27 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
-///		Date update	: 31-05-2016
+///		Date create	: 07-06-2016
+///		Date update	: 07-06-2016
 ///		Comment		:
 /// ============================================================================
-#include <QLabel>
+#include <QHeaderView>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QKeyEvent>
 
-//#include "application.h"
-//#include "business_logic.h"
+#include "application.h"
+#include "business_logic.h"
 
-#include "panel_ware_detail.h"
-#include "panel_ware_properties.h"
 #include "listview_ware_detail.h"
+#include "delegate_line_edit.h"
 
 namespace assembled_ware
 {
 /// ############################################################################
-///			class panel_ware_detail
+///			class listview_ware_detail
 /// ############################################################################
 
     /// ========================================================================
@@ -30,20 +29,23 @@ namespace assembled_ware
     /// ========================================================================
 
     /// ------------------------------------------------------------------------
-	///	panel_ware_detail( )
+	///	listview_ware_detail( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::panel_ware_detail(QWidget *parent) :
-        QWidget(parent)
+    listview_ware_detail::listview_ware_detail(QWidget *parent) :
+        QTableView(parent)
     {
         this->initialize( );
     }
     /// ------------------------------------------------------------------------
-    ///	~panel_ware_detail( )
+    ///	~listview_ware_detail( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::~panel_ware_detail( )
+    listview_ware_detail::~listview_ware_detail( )
     {
 
     }
+    /// ========================================================================
+    ///		PROPERTIES
+    /// ========================================================================
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -51,59 +53,47 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// initialize( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::initialize( )
+    void listview_ware_detail::initialize( )
     {
-        this->init_layout( );
+		this->init_view( );
 
         this->init_connections( );
     }
 
     /// ------------------------------------------------------------------------
-    /// init_layout( )
-    /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_layout( )
-    {
-		QVBoxLayout *layout = new QVBoxLayout;
-
-		layout->addWidget( this->init_panel_properties( ), this->_STRETCH_PROPERTIES );
-		layout->addWidget( this->init_listview_detail( ), this->_STRETCH_LIST );
-
-		this->setLayout( layout );
-    }
-
-    /// ------------------------------------------------------------------------
     /// init_connections( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_connections( )
+    void listview_ware_detail::init_connections( )
     {
     }
 
-    /// ------------------------------------------------------------------------
-    /// init_listview_detail( )
-    /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::init_listview_detail( )
+	/// ------------------------------------------------------------------------
+	///	init_view( )
+	/// ------------------------------------------------------------------------
+    void listview_ware_detail::init_view( )
     {
-		QLabel *lbl = new QLabel( tr("Ware detail list:"), this );
-		this->_lv_wd = new listview_ware_detail(this);
+        this->setShowGrid( true );
+		this->setGridStyle( Qt::DotLine );
+		this->horizontalHeader( )->setVisible( true );
+		this->verticalHeader( )->setVisible( false );
 
-		QVBoxLayout *layout = new QVBoxLayout;
-		layout->addWidget(lbl, this->_STRETCH_LABEL);
-		layout->addWidget(this->_lv_wd, this->_STRETCH_LIST);
+#if QT_VERSION >= 0x050000
+		this->horizontalHeader( )->setSectionsClickable( true );
+		this->verticalHeader( )->setSectionsClickable( false );
+#else
+		this->horizontalHeader( )->setClickable( true );
+		this->verticalHeader( )->setClickable( false );
+#endif
+/*
+		this->setModel(
+				application::the_business_logic( ).model_ware( )
+					  );
+*/
+		this->setSelectionMode( QAbstractItemView::SingleSelection );
+		this->setSelectionBehavior( QAbstractItemView::SelectRows );
 
-		QWidget *wgt = new QWidget;
-		wgt->setLayout( layout );
-
-		return wgt;
-    }
-
-    /// ------------------------------------------------------------------------
-    /// init_panel_properties( )
-    /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::init_panel_properties( )
-    {
-		this->_panel_prop = new panel_ware_properties;
-		return this->_panel_prop;
-    }
+		this->setItemDelegate( new espira::controls::delegate_line_edit );
+	}
 
     /// ========================================================================
     ///		EVENTS
@@ -111,7 +101,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// keyPressEvent ( QKeyEvent * event )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::keyPressEvent( QKeyEvent * event )
+    void listview_ware_detail::keyPressEvent( QKeyEvent * event )
     {
         /*
         if( event->key( ) == Qt::Key_N )
@@ -123,6 +113,14 @@ namespace assembled_ware
         }
         */
         QWidget::keyPressEvent( event );
+    }
+
+	/// ------------------------------------------------------------------------
+	///	resizeEvent( QResizeEvent *event )
+	/// ------------------------------------------------------------------------
+    void listview_ware_detail::resizeEvent( QResizeEvent *event )
+    {
+        QTableView::resizeEvent( event );
     }
 
     /// ========================================================================

@@ -1,24 +1,25 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
-///		Date update	: 31-05-2016
+///		Date create	: 07-06-2016
+///		Date update	: 07-06-2016
 ///		Comment		:
 /// ============================================================================
-#ifndef __PANEL_WARE_DETAIL_H__
-#define __PANEL_WARE_DETAIL_H__
+#ifndef __PANEL_WARE_PROPERTIES_H__
+#define __PANEL_WARE_PROPERTIES_H__
 
 #include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+
 
 namespace assembled_ware
 {
 
-class panel_ware_properties;
-class listview_ware_detail;
 /// ############################################################################
-///			class panel_ware_detail
+///			class panel_ware_properties
 /// ############################################################################
-    class panel_ware_detail : public QWidget
+    class panel_ware_properties : public QWidget
     {
     Q_OBJECT
     /// ========================================================================
@@ -26,13 +27,13 @@ class listview_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail( const panel_ware_detail &rhs );
+        panel_ware_properties( const panel_ware_properties &rhs );
 
 	public:
         /// --------------------------------------------------------------------
-        explicit panel_ware_detail(QWidget *parent = 0);
+        explicit panel_ware_properties(QWidget *parent = 0);
         /// --------------------------------------------------------------------
-        virtual ~panel_ware_detail( );
+        virtual ~panel_ware_properties( );
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -42,8 +43,6 @@ class listview_ware_detail;
         void initialize( );
         void init_layout();
         void init_connections( );
-        QWidget* init_listview_detail( );
-        QWidget* init_panel_properties( );
 
     /// ========================================================================
     ///		PROPERTIES
@@ -57,7 +56,7 @@ class listview_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail& operator=( const panel_ware_detail &rhs );
+        panel_ware_properties& operator=( const panel_ware_properties &rhs );
 
     /// ========================================================================
     ///		EVENTS
@@ -75,17 +74,16 @@ class listview_ware_detail;
     ///			FIELDS
     /// ========================================================================
     private:
-		const int _STRETCH_LABEL = 10;
-		const int _STRETCH_LIST = 1000;
-		const int _STRETCH_PROPERTIES = 10;
+		QLabel		*_txt_ware_name = nullptr;
+		QLabel		*_txt_article = nullptr;
+		QLabel		*_txt_barcode = nullptr;
+		QLineEdit	*_txt_percent = nullptr;
+		QLineEdit	*_txt_sum = nullptr;
 
-		panel_ware_properties	*_panel_prop = nullptr;
-		listview_ware_detail	*_lv_wd = nullptr;
-
-	};//class panel_ware_detail
+	};//class panel_ware_properties
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
 }//namespace assembled_ware
 
-#endif // __PANEL_WARE_DETAIL_H__
+#endif // __PANEL_WARE_PROPERTIES_H__
