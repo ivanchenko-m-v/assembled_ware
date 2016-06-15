@@ -1,25 +1,25 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
+///		Date create	: 15-06-2016
 ///		Date update	: 15-06-2016
 ///		Comment		:
 /// ============================================================================
-#ifndef __PANEL_WARE_DETAIL_H__
-#define __PANEL_WARE_DETAIL_H__
+#ifndef __PANEL_WARE_DETAIL_EDITOR_H__
+#define __PANEL_WARE_DETAIL_EDITOR_H__
 
 #include <QWidget>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QSpinBox>
 
 namespace assembled_ware
 {
 
-class panel_ware_properties;
-class panel_ware_detail_editor;
-class listview_ware_detail;
 /// ############################################################################
-///			class panel_ware_detail
+///			class panel_ware_detail_editor
 /// ############################################################################
-    class panel_ware_detail : public QWidget
+    class panel_ware_detail_editor : public QWidget
     {
     Q_OBJECT
     /// ========================================================================
@@ -27,13 +27,13 @@ class listview_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail( const panel_ware_detail &rhs );
+        panel_ware_detail_editor( const panel_ware_detail_editor &rhs );
 
 	public:
         /// --------------------------------------------------------------------
-        explicit panel_ware_detail(QWidget *parent = 0);
+        explicit panel_ware_detail_editor(QWidget *parent = 0);
         /// --------------------------------------------------------------------
-        virtual ~panel_ware_detail( );
+        virtual ~panel_ware_detail_editor( );
 
     /// ========================================================================
     ///		FUNCTIONS
@@ -43,9 +43,9 @@ class listview_ware_detail;
         void initialize( );
         void init_layout();
         void init_connections( );
-        QWidget* widget_listview_detail( );
-        QWidget* widget_ware_properties( );
-        QWidget* widget_detail_editor( );
+        QWidget* widget_ware_detail_name( );
+        QWidget* widget_qty( );
+        QWidget* widget_buttons( );
 
     /// ========================================================================
     ///		PROPERTIES
@@ -59,7 +59,7 @@ class listview_ware_detail;
     /// ========================================================================
     private:
         /// --------------------------------------------------------------------
-        panel_ware_detail& operator=( const panel_ware_detail &rhs );
+        panel_ware_detail_editor& operator=( const panel_ware_detail_editor &rhs );
 
     /// ========================================================================
     ///		EVENTS
@@ -77,19 +77,22 @@ class listview_ware_detail;
     ///			FIELDS
     /// ========================================================================
     private:
+		const int _MARGIN_ALL = 5;
+		const int _STRETCH_CONTROL = 1000;
 		const int _STRETCH_LABEL = 10;
-		const int _STRETCH_LIST = 1000;
-		const int _STRETCH_PROPERTIES = 10;
-		const int _STRETCH_DETAIL_EDITOR = 1;
+		const int _STRETCH_NAME = 750;
+		const int _STRETCH_QTY = 250;
 
-		panel_ware_properties		*_panel_prop = nullptr;
-		panel_ware_detail_editor	*_panel_detail_editor = nullptr;
-		listview_ware_detail		*_lv_wd = nullptr;
+		QLineEdit	*_txt_ware_detail_name = nullptr;
+		QSpinBox	*_num_qty = nullptr;
 
-	};//class panel_ware_detail
+		QPushButton	*_btn_add = nullptr;
+		QPushButton	*_btn_remove = nullptr;
+
+	};//class panel_ware_detail_editor
 /// ############################################################################
 /// ----------------------------------------------------------------------------
 
 }//namespace assembled_ware
 
-#endif // __PANEL_WARE_DETAIL_H__
+#endif // __PANEL_WARE_DETAIL_EDITOR_H__

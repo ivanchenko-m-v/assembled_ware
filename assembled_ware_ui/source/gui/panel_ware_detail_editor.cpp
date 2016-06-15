@@ -1,7 +1,7 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 31-05-2016
+///		Date create	: 15-06-2016
 ///		Date update	: 15-06-2016
 ///		Comment		:
 /// ============================================================================
@@ -15,15 +15,12 @@
 //#include "application.h"
 //#include "business_logic.h"
 
-#include "panel_ware_detail.h"
-#include "panel_ware_properties.h"
 #include "panel_ware_detail_editor.h"
-#include "listview_ware_detail.h"
 
 namespace assembled_ware
 {
 /// ############################################################################
-///			class panel_ware_detail
+///			class panel_ware_detail_editor
 /// ############################################################################
 
     /// ========================================================================
@@ -31,17 +28,17 @@ namespace assembled_ware
     /// ========================================================================
 
     /// ------------------------------------------------------------------------
-	///	panel_ware_detail( )
+	///	panel_ware_detail_editor( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::panel_ware_detail(QWidget *parent) :
+    panel_ware_detail_editor::panel_ware_detail_editor(QWidget *parent) :
         QWidget(parent)
     {
         this->initialize( );
     }
     /// ------------------------------------------------------------------------
-    ///	~panel_ware_detail( )
+    ///	~panel_ware_detail_editor( )
     /// ------------------------------------------------------------------------
-    panel_ware_detail::~panel_ware_detail( )
+    panel_ware_detail_editor::~panel_ware_detail_editor( )
     {
 
     }
@@ -52,7 +49,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// initialize( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::initialize( )
+    void panel_ware_detail_editor::initialize( )
     {
         this->init_layout( );
 
@@ -62,13 +59,13 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_layout( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_layout( )
+    void panel_ware_detail_editor::init_layout( )
     {
-		QVBoxLayout *layout = new QVBoxLayout;
+		QHBoxLayout *layout = new QHBoxLayout;
 
-		layout->addWidget( this->widget_ware_properties( ), this->_STRETCH_PROPERTIES );
-		layout->addWidget( this->widget_detail_editor( ), this->_STRETCH_DETAIL_EDITOR );
-		layout->addWidget( this->widget_listview_detail( ), this->_STRETCH_LIST );
+		layout->addWidget( this->widget_ware_detail_name( ), this->_STRETCH_NAME );
+		layout->addWidget( this->widget_qty( ), this->_STRETCH_QTY );
+		layout->addWidget( this->widget_buttons( ) );
 
 		this->setLayout( layout );
     }
@@ -76,45 +73,79 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// init_connections( )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::init_connections( )
+    void panel_ware_detail_editor::init_connections( )
     {
     }
 
     /// ------------------------------------------------------------------------
-    /// widget_listview_detail( )
+    /// widget_ware_detail_name( )
     /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::widget_listview_detail( )
+    QWidget* panel_ware_detail_editor::widget_ware_detail_name( )
     {
-		QLabel *lbl = new QLabel( tr("Ware detail list:"), this );
-		this->_lv_wd = new listview_ware_detail(this);
+		QHBoxLayout *layout = new QHBoxLayout;
+		layout->setSpacing( 0 );
+		layout->setContentsMargins(0,0,0,0);
 
-		QVBoxLayout *layout = new QVBoxLayout;
-		layout->addWidget(lbl, this->_STRETCH_LABEL);
-		layout->addWidget(this->_lv_wd, this->_STRETCH_LIST);
+		QLabel	*label = new QLabel( tr("Detail:"), this );
+		layout->addWidget( label, _STRETCH_LABEL );
+		this->_txt_ware_detail_name = new QLineEdit;
+		layout->addWidget( this->_txt_ware_detail_name, _STRETCH_CONTROL );
 
-		QWidget *wgt = new QWidget;
-		wgt->setLayout( layout );
+		QWidget *widget = new QWidget(this);
+		widget->setLayout( layout );
 
-		return wgt;
+		return widget;
     }
 
     /// ------------------------------------------------------------------------
-    /// widget_ware_properties( )
+    /// widget_qty( )
     /// ------------------------------------------------------------------------
-    QWidget*  panel_ware_detail::widget_ware_properties( )
+    QWidget* panel_ware_detail_editor::widget_qty( )
     {
-		this->_panel_prop = new panel_ware_properties;
-		return this->_panel_prop;
+		QHBoxLayout *layout = new QHBoxLayout;
+		layout->setSpacing( 0 );
+		layout->setContentsMargins(0,0,0,0);
+
+		QLabel	*label = new QLabel( tr("Qty:"), this );
+		layout->addWidget( label, _STRETCH_LABEL );
+		this->_num_qty = new QSpinBox;
+		layout->addWidget( this->_num_qty, _STRETCH_CONTROL );
+
+		QWidget *widget = new QWidget(this);
+		widget->setLayout( layout );
+
+		return widget;
     }
 
     /// ------------------------------------------------------------------------
-    /// widget_detail_editor( )
+    /// widget_qty( )
     /// ------------------------------------------------------------------------
-    QWidget* panel_ware_detail::widget_detail_editor( )
+    QWidget* panel_ware_detail_editor::widget_buttons( )
     {
-		this->_panel_detail_editor = new panel_ware_detail_editor;
-		return this->_panel_detail_editor;
+		QHBoxLayout *layout = new QHBoxLayout;
+		layout->setContentsMargins(0,0,0,0);
+
+		//
+		//_btn_add
+		//
+		this->_btn_add = new QPushButton;
+		this->_btn_add->setIcon( QIcon(":/image/images/32x32/list-add.png") );
+		this->_btn_add->setToolTip( tr("add ware detail to specification") );
+		layout->addWidget( this->_btn_add );
+		//
+		//_btn_remove
+		//
+		this->_btn_remove = new QPushButton;
+		this->_btn_remove->setIcon( QIcon(":/image/images/32x32/list-remove.png") );
+		this->_btn_remove->setToolTip( tr("remove ware detail from specification") );
+		layout->addWidget( this->_btn_remove );
+
+		QWidget *widget = new QWidget(this);
+		widget->setLayout( layout );
+
+		return widget;
     }
+
 
     /// ========================================================================
     ///		EVENTS
@@ -122,7 +153,7 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     /// keyPressEvent ( QKeyEvent * event )
     /// ------------------------------------------------------------------------
-    void panel_ware_detail::keyPressEvent( QKeyEvent * event )
+    void panel_ware_detail_editor::keyPressEvent( QKeyEvent * event )
     {
         /*
         if( event->key( ) == Qt::Key_N )
