@@ -2,7 +2,7 @@
 ///=============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 08-11-2010
-///		Date update	: 08-11-2010
+///		Date update	: 20-06-2016
 ///		Comment		:
 ///=============================================================================
 #include <QLineEdit>
@@ -26,7 +26,7 @@ namespace controls
 	///	delegate_line_edit( )
 	///-------------------------------------------------------------------------
 	delegate_line_edit::delegate_line_edit( QObject *parent ) :
-		QItemDelegate( parent ),
+		QStyledItemDelegate( parent ),
 		_alignment( Qt::AlignLeft | Qt::AlignVCenter )
 	{
 	}
@@ -114,8 +114,9 @@ namespace controls
 
 	///-------------------------------------------------------------------------
 	///	virtual
-	///	updateEditorGeometry( )
+	///	paint( ) (from QItemDelegate)
 	///-------------------------------------------------------------------------
+	/*
 	void delegate_line_edit::paint(
 									QPainter* painter,
 									const QStyleOptionViewItem& option,
@@ -148,7 +149,63 @@ namespace controls
 							value
 							);
 	}
-
+	*/
+	///-------------------------------------------------------------------------
+	///	virtual
+	///	paint( ) (from QStyledItemDelegate)
+	///-------------------------------------------------------------------------
+	void delegate_line_edit::paint(
+									QPainter* painter,
+									const QStyleOptionViewItem& option,
+									const QModelIndex& index
+								  ) const
+	{
+		if( !index.isValid( ) )
+		{
+			return;
+		}
+		bool selected = option.state & QStyle::State_Selected;
+		QPalette palette( option.palette );
+		palette.setColor(
+							QPalette::Active, QPalette::Window,
+							selected ? option.palette.highlight( ).color( )
+									 : option.palette.base( ).color( )
+						);
+		palette.setColor(
+							QPalette::Active, QPalette::WindowText,
+							selected ? option.palette.highlightedText( ).color( )
+									 : option.palette.text( ).color( )
+						);
+						/*
+		//Отрисовка бэкграунда
+		this->drawBackground( painter, option, index );
+		//Отрисовка фокуса
+		if( option.state & QStyle::State_Selected )
+		{
+			this -> drawFocus( painter, option, option.rect );
+		}
+		*/
+		//Получение данных
+		QString value = index.model( )->data(
+												index,
+												Qt::DisplayRole
+											).toString( );
+		//Отрисовка данных
+		QPen pen( Qt::SolidLine );
+		pen.setColor(
+				!( option.state & QStyle::State_Selected )
+					? option.palette.brush( QPalette::Foreground ).color( )
+					: option.palette.brush( QPalette::HighlightedText ).color( )
+					);
+		painter->save();
+		painter -> setPen( pen );
+		painter -> drawText(
+							option.rect.adjusted( 4, 0, -4, 0 ),
+							this -> _alignment,
+							value
+							);
+		painter->restore();
+	}
 ///#############################################################################
 
 }//namespace controls

@@ -1,14 +1,14 @@
-//$Header
+///$Header
 ///=============================================================================
-//		Author		: M. Ivanchenko
-//		Date create	: 08-11-2010
-//		Date update	: 08-11-2010
-//		Comment		:
+///		Author		: M. Ivanchenko
+///		Date create	: 08-11-2010
+///		Date update	: 20-06-2016
+///		Comment		:
 ///=============================================================================
 #ifndef __DELEGATE_LINE_EDIT_H__
 #define __DELEGATE_LINE_EDIT_H__
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 namespace espira
 {
@@ -18,7 +18,7 @@ namespace controls
 ///			class delegate_line_edit
 ///#############################################################################
 
-	class delegate_line_edit : public QItemDelegate
+	class delegate_line_edit : public QStyledItemDelegate
 	{
 	Q_OBJECT
 	///=========================================================================
