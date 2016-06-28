@@ -1,13 +1,13 @@
 /// $Header
 /// ============================================================================
 ///		Author		: M. Ivanchenko
-///		Date create	: 02-06-2016
-///		Date update	: 02-06-2016
+///		Date create	: 28-06-2016
+///		Date update	: 28-06-2016
 ///		Comment		:
 /// ============================================================================
 
-#ifndef __DATA_MODEL_WARE_H__
-#define __DATA_MODEL_WARE_H__
+#ifndef __DATA_MODEL_WARE_SPECIFICATION_H__
+#define __DATA_MODEL_WARE_SPECIFICATION_H__
 
 #include <QAbstractTableModel>
 #include <QList>
@@ -19,9 +19,9 @@ namespace assembled_ware
 {
 
 /// ############################################################################
-///			class data_model_ware
+///			class data_model_ware_specification
 /// ############################################################################
-    class data_model_ware : public QAbstractTableModel
+    class data_model_ware_specification : public QAbstractTableModel
 	{
 
 	Q_OBJECT
@@ -30,9 +30,9 @@ namespace assembled_ware
 	/// ========================================================================
 	public:
 	/// ------------------------------------------------------------------------
-        data_model_ware( QObject* pobj = 0 );
+        data_model_ware_specification( QObject* pobj = 0 );
 	/// ------------------------------------------------------------------------
-        virtual ~data_model_ware( );
+        virtual ~data_model_ware_specification( );
 
 	/// ========================================================================
 	///		PROPERTIES
@@ -46,7 +46,7 @@ namespace assembled_ware
 	/// ========================================================================
 	private:
 	/// ------------------------------------------------------------------------
-        data_model_ware& operator=( const data_model_ware &rhs );
+        data_model_ware_specification& operator=( const data_model_ware_specification &rhs );
 
 	/// ========================================================================
 	///		FUNCTIONS
@@ -58,9 +58,6 @@ namespace assembled_ware
 		virtual void init_columns_header( void )
 		{
             this -> _header.append( QObject::tr( "WARE" ) );
-            this -> _header.append( QObject::tr( "QTY" ) );
-            this -> _header.append( QObject::tr( "PRICE" ) );
-            this -> _header.append( QObject::tr( "SUM" ) );
         }
 
 	public:
@@ -154,9 +151,9 @@ namespace assembled_ware
 		QVector<QString>		_header;
 		list_ware				_list;
 
-    };//class data_model_ware
+    };//class data_model_ware_specification
 /// ############################################################################
 
 }//namespace assembled_ware
 
-#endif // __DATA_MODEL_WARE_H__
+#endif // __DATA_MODEL_WARE_SPECIFICATION_H__

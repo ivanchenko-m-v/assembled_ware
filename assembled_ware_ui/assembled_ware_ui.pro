@@ -29,7 +29,8 @@ SOURCES +=\
     source/gui/delegate_line_edit.cpp \
     source/gui/panel_ware_properties.cpp \
     source/gui/listview_ware_detail.cpp \
-    source/gui/panel_ware_detail_editor.cpp
+    source/gui/panel_ware_detail_editor.cpp \
+    source/data_models/data_model_ware_specification.cpp
 
 HEADERS  += \
     source/app/application.h \
@@ -48,7 +49,7 @@ HEADERS  += \
     source/gui/panel_ware_properties.h \
     source/gui/listview_ware_detail.h \
     source/gui/panel_ware_detail_editor.h \
-    source/data_objects/data_ware_detail.h
+    source/data_models/data_model_ware_specification.h
 
 
 MOC_DIR = ./xmoc
