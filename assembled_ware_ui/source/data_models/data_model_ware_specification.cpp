@@ -61,6 +61,7 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
     void data_model_ware_specification::clear( )
 	{
+	/*
         if( !this->_list.size( ) )
         {
             return;
@@ -73,6 +74,7 @@ namespace assembled_ware
 			delete w;
 		}
 		this->_list.clear( );
+		*/
 	}
 
 	/// ------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 28-06-2016
-///		Date update	: 28-06-2016
+///		Date update	: 29-06-2016
 ///		Comment		:
 /// ============================================================================
 
@@ -58,6 +58,9 @@ namespace assembled_ware
 		virtual void init_columns_header( void )
 		{
             this -> _header.append( QObject::tr( "WARE" ) );
+            this -> _header.append( QObject::tr( "PRICE" ) );
+            this -> _header.append( QObject::tr( "QTY" ) );
+            this -> _header.append( QObject::tr( "SUM" ) );
         }
 
 	public:

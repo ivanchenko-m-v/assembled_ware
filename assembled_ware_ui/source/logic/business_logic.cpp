@@ -1,7 +1,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 24-05-2016
-///		Date update	: 06-06-2016
+///		Date update	: 29-06-2016
 ///		Comment		:
 /// ============================================================================
 #include <QDebug>
@@ -12,6 +12,7 @@
 #include "business_logic.h"
 
 #include "data_model_ware.h"
+#include "data_model_ware_specification.h"
 #include "data_ware.h"
 
 namespace assembled_ware
@@ -42,6 +43,8 @@ namespace assembled_ware
     void business_logic::init_data_models( )
     {
 		this->init_model_ware( );
+
+		this->init_model_ware_specification( );
     }
 
     /// ------------------------------------------------------------------------
@@ -49,9 +52,27 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     void business_logic::init_model_ware( )
     {
+        if( this->_model_ware != nullptr )
+        {
+            delete _model_ware;
+            this->_model_ware = nullptr;
+        }
         this->_model_ware = new data_model_ware;
         this->ware_select( );
     }
+
+    /// ------------------------------------------------------------------------
+	///	init_model_ware_specification( )
+    /// ------------------------------------------------------------------------
+	void business_logic::init_model_ware_specification( )
+	{
+		if( this->_model_specification != nullptr )
+		{
+			delete _model_specification;
+			this->_model_specification = nullptr;
+		}
+		this->_model_specification = new data_model_ware_specification;
+	}
 
     /// ------------------------------------------------------------------------
     ///	free_memory( )
@@ -61,6 +82,10 @@ namespace assembled_ware
         if( this->_model_ware != nullptr )
         {
             delete _model_ware;
+        }
+        if( this->_model_specification != nullptr )
+        {
+			delete _model_specification;
         }
     }
 
@@ -118,11 +143,11 @@ namespace assembled_ware
 		{
 			//get data collection from data provider
 			p_coll = new data_ware_collection;
-			p_coll->append( new data_ware( {"1", "hash_1", "assembled ware 1"} ) );
-			p_coll->append( new data_ware( {"2", "hash_2", "assembled ware 2"} ) );
-			p_coll->append( new data_ware( {"3", "hash_3", "assembled ware 3"} ) );
-			p_coll->append( new data_ware( {"4", "hash_4", "assembled ware 4"} ) );
-			p_coll->append( new data_ware( {"5", "hash_5", "assembled ware 5"} ) );
+			p_coll->append( new data_ware( {"1", "hash_1", "assembled ware 1", "A001-9876", "9785911360597", "30", "320.28"} ) );
+			p_coll->append( new data_ware( {"2", "hash_2", "assembled ware 2", "A002-7593", "9785911360697", "30", "1320.28"} ) );
+			p_coll->append( new data_ware( {"3", "hash_3", "assembled ware 3", "A003-2346", "9785911460597", "20", "123.28"} ) );
+			p_coll->append( new data_ware( {"4", "hash_4", "assembled ware 4", "A004-2784", "9786911460597", "45", "12330.28"} ) );
+			p_coll->append( new data_ware( {"5", "hash_5", "assembled ware 5", "A005-2479", "9785911760597", "20", "5678.28"} ) );
 			//refresh data model
 			this->_model_ware->refresh( p_coll );
 

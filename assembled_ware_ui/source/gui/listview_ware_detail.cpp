@@ -17,6 +17,7 @@
 
 #include "listview_ware_detail.h"
 #include "delegate_line_edit.h"
+#include "data_model_ware_specification.h"
 
 namespace assembled_ware
 {
@@ -84,11 +85,10 @@ namespace assembled_ware
 		this->horizontalHeader( )->setClickable( true );
 		this->verticalHeader( )->setClickable( false );
 #endif
-/*
 		this->setModel(
-				application::the_business_logic( ).model_ware( )
+				application::the_business_logic( ).model_ware_specification( )
 					  );
-*/
+
 		this->setSelectionMode( QAbstractItemView::SingleSelection );
 		this->setSelectionBehavior( QAbstractItemView::SelectRows );
 

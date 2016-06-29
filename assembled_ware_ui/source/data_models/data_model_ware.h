@@ -58,9 +58,6 @@ namespace assembled_ware
 		virtual void init_columns_header( void )
 		{
             this -> _header.append( QObject::tr( "WARE" ) );
-            this -> _header.append( QObject::tr( "QTY" ) );
-            this -> _header.append( QObject::tr( "PRICE" ) );
-            this -> _header.append( QObject::tr( "SUM" ) );
         }
 
 	public:
