@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 28-06-2016
-///		Date update	: 29-06-2016
+///		Date update	: 30-06-2016
 ///		Comment		:
 /// ============================================================================
 
@@ -17,6 +17,24 @@
 
 namespace assembled_ware
 {
+/// ############################################################################
+///			struct data_specification_item
+/// ############################################################################
+struct data_specification_item
+{
+	data_ware	_ware;
+	QString		_qty;
+	QString		_sum;
+};
+/// ############################################################################
+///			data_specification_collection
+/// ############################################################################
+///
+    using data_specification_collection =
+				espira::data_objects::data_collection<data_specification_item>;
+
+    using list_specification =
+				espira::data_objects::list_object<data_specification_item>;
 
 /// ############################################################################
 ///			class data_model_ware_specification
@@ -25,6 +43,15 @@ namespace assembled_ware
 	{
 
 	Q_OBJECT
+
+	enum data_field : int
+	{
+		field_ware = 0,
+		field_price = 1,
+		field_qty = 2,
+		field_sum = 3
+	};
+
 	/// ========================================================================
 	///		CONSTRUCTORS/DESTRUCTOR
 	/// ========================================================================
@@ -39,7 +66,7 @@ namespace assembled_ware
 	/// ========================================================================
 	public:
 	/// ------------------------------------------------------------------------
-    const data_ware* ware( int i_row ) const;
+    const data_specification_item *ware( int i_row ) const;
 
 	/// ========================================================================
 	///		OPERATORS
@@ -69,7 +96,7 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
 		void refresh( const QVector<QVector<QVariant> > &data );
 	/// ------------------------------------------------------------------------
-        void refresh( data_ware_collection *data );
+        void refresh( data_specification_collection *data );
 	/// ------------------------------------------------------------------------
         //void insert( const data_request &request );
 	/// ------------------------------------------------------------------------
@@ -152,7 +179,7 @@ namespace assembled_ware
 	/// ========================================================================
 	private:
 		QVector<QString>		_header;
-		list_ware				_list;
+		list_specification		_list;
 
     };//class data_model_ware_specification
 /// ############################################################################

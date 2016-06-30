@@ -44,7 +44,7 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
 	///	ware( int i_row )
 	/// ------------------------------------------------------------------------
-    const data_ware* data_model_ware_specification::ware( int i_row ) const
+    const data_specification_item* data_model_ware_specification::ware( int i_row ) const
 	{
 		if( i_row < 0 || i_row >= this->_list.size( ) )
 		{
@@ -61,7 +61,6 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
     void data_model_ware_specification::clear( )
 	{
-	/*
         if( !this->_list.size( ) )
         {
             return;
@@ -69,12 +68,12 @@ namespace assembled_ware
 		this->removeRows( 0, this->_list.size( ) );
 		while( this->_list.count( ) )
 		{
-			data_ware *w = this->_list.back();
+			data_specification_item *item = this->_list.back();
 			this->_list.pop_back( );
-			delete w;
+
+			delete item;
 		}
 		this->_list.clear( );
-		*/
 	}
 
 	/// ------------------------------------------------------------------------
@@ -113,7 +112,7 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
 	///	refresh( data_ware_collection *data )
 	/// ------------------------------------------------------------------------
-    void data_model_ware_specification::refresh( data_ware_collection *data )
+    void data_model_ware_specification::refresh(data_specification_collection *data )
 	{
 		this->clear( );
 
@@ -159,23 +158,22 @@ namespace assembled_ware
 			return QVariant( );
 		}
 
-        data_ware* ware = this->_list.at( index.row( ) );
-        return ware->to_string( );
+        data_specification_item* item = this->_list.at( index.row( ) );
 
-        /*
 		switch( index.column( ) )
 		{
-            case data_ware::num_field_ware_id:
-                return ware->ware_id( );
-			case data_ware::num_field_hash:
-                return ware->hash( );
-			case data_ware::num_field_ware:
-				return ware->ware( );
+            case field_ware:
+                return item->_ware.ware( );
+			case field_price:
+                return item->_ware.sum_total( );
+			case field_qty:
+				return item->_qty;
+			case field_sum:
+				return item->_sum;
 			default:
 				return QVariant( );
 		}
 		return QVariant( );
-		*/
 	}
 
 	/// ------------------------------------------------------------------------
