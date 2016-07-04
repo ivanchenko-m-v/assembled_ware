@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 31-05-2016
-///		Date update	: 24-06-2016
+///		Date update	: 04-07-2016
 ///		Comment		:
 /// ============================================================================
 #ifndef __DATA_WARE_H__
@@ -203,6 +203,25 @@ namespace assembled_ware
 ///
     using data_ware_collection = espira::data_objects::data_collection<data_ware>;
     using list_ware = espira::data_objects::list_object<data_ware>;
+
+/// ############################################################################
+///			struct data_specification_item
+/// ############################################################################
+struct data_specification_item
+{
+	data_ware	_ware;
+	QString		_qty;
+	QString		_sum;
+};
+/// ############################################################################
+///			data_specification_collection
+/// ############################################################################
+///
+    using data_specification_collection =
+				espira::data_objects::data_collection<data_specification_item>;
+
+    using list_specification =
+				espira::data_objects::list_object<data_specification_item>;
 
 /// ############################################################################
 /// ----------------------------------------------------------------------------

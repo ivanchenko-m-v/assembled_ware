@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 28-06-2016
-///		Date update	: 28-06-2016
+///		Date update	: 04-07-2016
 ///		Comment		:
 /// ============================================================================
 #include <QDebug>
@@ -130,19 +130,17 @@ namespace assembled_ware
     }
 
 	/// ------------------------------------------------------------------------
-	///	insert(const data_ware &request)
+	///	insert(const data_specification_item &item )
 	/// ------------------------------------------------------------------------
-/*
-    void data_model_ware_specification::insert( const data_ware &request )
+    void data_model_ware_specification::insert( const data_specification_item &item )
     {
 		this->beginInsertRows( QModelIndex( ), this->_list.size( ), this->_list.size( ) );
 
-        data_ware *pr = new data_ware( request );
-		this->_list.append( pr );
+        data_specification_item *p_item = new data_specification_item( item );
+		this->_list.append( p_item );
 
         this->endInsertRows( );
     }
-    */
 
 	/// ------------------------------------------------------------------------
 	/// virtual
@@ -207,7 +205,6 @@ namespace assembled_ware
 								const QModelIndex &parent //= QModelIndex( )
 										 )
 	{
-        /*
 		if( ( row < 0 ) || ( row > this->_list.size( ) ) )
 		{
 			return false;
@@ -216,12 +213,11 @@ namespace assembled_ware
 
 		for( int i = 0; i < count; i++ )
 		{
-			data_ware* request = new data_ware;
-			this->_list.insert( row + i, request );
+			data_specification_item *item = new data_specification_item;
+			this->_list.insert( row + i, item );
 		}
 
 		this->endInsertRows( );
-        */
 
 		return true;
 	}
@@ -235,17 +231,15 @@ namespace assembled_ware
 								const QModelIndex &parent //= QModelIndex( )
 										 )
 	{
-        /*
 		this->beginRemoveRows( parent, row, row + count - 1 );
 
 		for( int i = 0; i < count; ++i )
 		{
-			data_ware *item = this->_list.takeAt( row );
+			data_specification_item *item = this->_list.takeAt( row );
 			delete item;
 		}
 
 		this->endRemoveRows( );
-        */
 
 		return true;
 	}

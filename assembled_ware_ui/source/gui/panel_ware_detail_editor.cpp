@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 15-06-2016
-///		Date update	: 15-06-2016
+///		Date update	: 04-07-2016
 ///		Comment		:
 /// ============================================================================
 #include <QLabel>
@@ -75,6 +75,10 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     void panel_ware_detail_editor::init_connections( )
     {
+		this->connect(
+						this->_btn_add, SIGNAL( pressed( ) ),
+						this, SLOT( append_detail( ) )
+					 );
     }
 
     /// ------------------------------------------------------------------------
@@ -164,11 +168,19 @@ namespace assembled_ware
             }
         }
         */
-        QWidget::keyPressEvent( event );
-    }
+		QWidget::keyPressEvent( event );
+	}
 
     /// ========================================================================
     ///		SLOTS
     /// ========================================================================
+    /// ------------------------------------------------------------------------
+    /// append_detail( )
+    /// ------------------------------------------------------------------------
+	void panel_ware_detail_editor::append_detail( )
+	{
+		QMessageBox::information( 0, "info", "append_detail( )" );
+	}
+
 
 }//namespace assembled_ware

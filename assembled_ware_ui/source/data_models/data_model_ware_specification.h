@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 28-06-2016
-///		Date update	: 30-06-2016
+///		Date update	: 04-07-2016
 ///		Comment		:
 /// ============================================================================
 
@@ -17,25 +17,6 @@
 
 namespace assembled_ware
 {
-/// ############################################################################
-///			struct data_specification_item
-/// ############################################################################
-struct data_specification_item
-{
-	data_ware	_ware;
-	QString		_qty;
-	QString		_sum;
-};
-/// ############################################################################
-///			data_specification_collection
-/// ############################################################################
-///
-    using data_specification_collection =
-				espira::data_objects::data_collection<data_specification_item>;
-
-    using list_specification =
-				espira::data_objects::list_object<data_specification_item>;
-
 /// ############################################################################
 ///			class data_model_ware_specification
 /// ############################################################################
@@ -98,7 +79,7 @@ struct data_specification_item
 	/// ------------------------------------------------------------------------
         void refresh( data_specification_collection *data );
 	/// ------------------------------------------------------------------------
-        //void insert( const data_request &request );
+        void insert( const data_specification_item &item );
 	/// ------------------------------------------------------------------------
 	/// override
 		virtual int rowCount(
