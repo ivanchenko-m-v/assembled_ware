@@ -75,8 +75,6 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
 		void clear( );
 	/// ------------------------------------------------------------------------
-		void refresh( const QVector<QVector<QVariant> > &data );
-	/// ------------------------------------------------------------------------
         void refresh( data_specification_collection *data );
 	/// ------------------------------------------------------------------------
         void insert( const data_specification_item &item );

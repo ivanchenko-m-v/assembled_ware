@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 28-06-2016
-///		Date update	: 04-07-2016
+///		Date update	: 06-07-2016
 ///		Comment		:
 /// ============================================================================
 #include <QDebug>
@@ -85,34 +85,9 @@ namespace assembled_ware
 	}
 
 	/// ------------------------------------------------------------------------
-	///	refresh( const QVector<QVector<QVariant> > &data )
+	///	refresh( data_specification_collection *data )
 	/// ------------------------------------------------------------------------
-    void data_model_ware_specification::refresh(const QVector<QVector<QVariant> > &data)
-	{
-		this->clear( );
-
-		if( !data.count( ) )
-		{
-			//if no data
-			return;
-		}
-/*
-		this->beginInsertRows( QModelIndex( ), 0, data.count( ) - 1 );
-
-		QVector<QVector<QVariant> >::const_iterator iter;
-		for( iter = data.constBegin( ); iter != data.end( ); ++iter )
-		{
-			data_ware *request = new data_ware( *iter );
-			this->_list.append( request );
-		}
-		this->endInsertRows( );
-        */
-	}
-
-	/// ------------------------------------------------------------------------
-	///	refresh( data_ware_collection *data )
-	/// ------------------------------------------------------------------------
-    void data_model_ware_specification::refresh(data_specification_collection *data )
+    void data_model_ware_specification::refresh( data_specification_collection *data )
 	{
 		this->clear( );
 
