@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 15-06-2016
-///		Date update	: 04-07-2016
+///		Date update	: 19-07-2016
 ///		Comment		:
 /// ============================================================================
 #include <QLabel>
@@ -92,8 +92,8 @@ namespace assembled_ware
 
 		QLabel	*label = new QLabel( tr("Detail:"), this );
 		layout->addWidget( label, _STRETCH_LABEL );
-		this->_txt_ware_detail_name = new QLineEdit;
-		layout->addWidget( this->_txt_ware_detail_name, _STRETCH_CONTROL );
+		this->_cbx_ware_detail_name = new combobox_detail;
+		layout->addWidget( this->_cbx_ware_detail_name, _STRETCH_CONTROL );
 
 		QWidget *widget = new QWidget(this);
 		widget->setLayout( layout );
