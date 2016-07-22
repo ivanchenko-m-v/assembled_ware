@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 31-05-2016
-///		Date update	: 02-06-2016
+///		Date update	: 20-07-2016
 ///		Comment		:
 /// ============================================================================
 #include <QHeaderView>
@@ -135,7 +135,7 @@ namespace assembled_ware
             }
         }
         */
-        QWidget::keyPressEvent( event );
+        QTableView::keyPressEvent( event );
     }
 
 	/// ------------------------------------------------------------------------
