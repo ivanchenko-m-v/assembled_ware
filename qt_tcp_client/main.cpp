@@ -1,18 +1,14 @@
 #include <QCoreApplication>
-#include <QTcpSocket>
-#include <QDebug>
+#include "qt_redis_client.h"
 
 int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
 
-	QTcpSocket sock;
-	sock.connectToHost( "localhost", 6379 );
+	imv::test_redis_client obj;
+	//obj.run_command( "ping" );
+	obj.run_command( "INFO" );
 
-	sock.write( "ping" );
-	QString str = sock.readAll();
-	qDebug()<< str;
-
-	return a.exec();
+	return a.exec( );
 }
 
