@@ -189,8 +189,11 @@ private slots:
 		{
 			return;
 		}
-		const QString& response = _pcli->redis_response( );
-		qDebug( ) << response;
+		QStringList sl = _pcli->redis_response( ).split("\r\n");
+		for( QString s : sl )
+		{
+			qDebug( ) << s;
+		}
 	}
 
 private:
