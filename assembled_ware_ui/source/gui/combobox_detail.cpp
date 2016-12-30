@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QKeyEvent>
 #include <QCompleter>
+#include <QLineEdit>
 
 #include "application.h"
 #include "business_logic.h"
@@ -34,7 +35,8 @@ namespace assembled_ware
 	///	combobox_detail( )
     /// ------------------------------------------------------------------------
     combobox_detail::combobox_detail(QWidget *parent) :
-        QComboBox(parent)
+        //QComboBox(parent)
+        QLineEdit(parent)
     {
         this->initialize( );
     }
@@ -91,18 +93,16 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
     void combobox_detail::init_view( )
     {
-		this->setInsertPolicy( InsertAtTop );
-		this->setEditable(true);
+//		this->setInsertPolicy( InsertAtTop );
+//		this->setEditable(true);
 /*
 		this->addItem( "" );
 		this->addItem( "test" );
 		this->addItem( "test 1" );
 */
-		this->setModel( application::the_business_logic( ).model_ware_search( ) );
-/*
-		QCompleter *completer = new QCompleter(this->model());
+		//this->setModel( application::the_business_logic( ).model_ware_search( ) );
+		QCompleter *completer = new QCompleter(application::the_business_logic( ).model_ware_search( ));
 		this->setCompleter(completer);
-		*/
 	}
 
     /// ========================================================================
@@ -113,7 +113,8 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     void combobox_detail::keyPressEvent( QKeyEvent * event )
     {
-		QComboBox::keyPressEvent( event );
+//		QComboBox::keyPressEvent( event );
+		QLineEdit::keyPressEvent( event );
 	}
 
     /// ------------------------------------------------------------------------
@@ -124,9 +125,10 @@ namespace assembled_ware
 		int n_key = event->key( );
 		if( n_key == Qt::Key_Enter || n_key == Qt::Key_Return )
 		{
-			application::the_business_logic( ).ware_detail_select( this->currentText( ) );
+			application::the_business_logic( ).ware_detail_select( this->text( ) );
+			this->completer()->setModel(application::the_business_logic( ).model_ware_search() );
 		}
-		QComboBox::keyReleaseEvent( event );
+		QLineEdit::keyReleaseEvent( event );
 	}
 
     /// ========================================================================

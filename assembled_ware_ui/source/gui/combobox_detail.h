@@ -8,7 +8,8 @@
 #ifndef __COMBOBOX_DETAIL_H__
 #define __COMBOBOX_DETAIL_H__
 
-#include <QComboBox>
+//#include <QComboBox>
+#include <QLineEdit>
 
 namespace assembled_ware
 {
@@ -17,7 +18,8 @@ namespace assembled_ware
 /// ############################################################################
 ///			class combobox_detail
 /// ############################################################################
-    class combobox_detail : public QComboBox
+    //class combobox_detail : public QComboBox
+    class combobox_detail : public QLineEdit
     {
     Q_OBJECT
     /// ========================================================================

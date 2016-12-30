@@ -256,8 +256,6 @@ namespace assembled_ware
 					}
 					//refresh data model
 					this->_model_ware_search->refresh( p_coll );
-
-					p_coll->free_data_pointer( );
 				}
 				catch( std::exception &ex )
 				{
