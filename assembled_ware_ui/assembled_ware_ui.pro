@@ -12,7 +12,10 @@ INCLUDEPATH += source/app \
 				source/gui \
 				source/logic \
 				source/data_objects \
-				source/data_models
+				source/data_models \
+				source/utils \
+				/home/u122/projects/redis/hiredis \
+				../qt_redis
 
 SOURCES +=\
     source/app/application.cpp \
@@ -32,7 +35,16 @@ SOURCES +=\
     source/gui/panel_ware_detail_editor.cpp \
     source/data_models/data_model_ware_specification.cpp \
     source/data_models/data_model_detail_search.cpp \
-    source/gui/combobox_detail.cpp
+    source/gui/combobox_detail.cpp \
+    ../../../redis/hiredis/async.c \
+    ../../../redis/hiredis/dict.c \
+    ../../../redis/hiredis/hiredis.c \
+    ../../../redis/hiredis/net.c \
+    ../../../redis/hiredis/read.c \
+    ../../../redis/hiredis/sds.c \
+    ../qt_redis/qt_redis_sync_connection.cpp \
+    source/gui/line_edit_ware_name.cpp \
+    source/utils/ware_name_text2.cpp
 
 HEADERS  += \
     source/app/application.h \
@@ -53,7 +65,18 @@ HEADERS  += \
     source/gui/panel_ware_detail_editor.h \
     source/data_models/data_model_ware_specification.h \
     source/data_models/data_model_detail_search.h \
-    source/gui/combobox_detail.h
+    source/gui/combobox_detail.h \
+    ../../../redis/hiredis/async.h \
+    ../../../redis/hiredis/dict.h \
+    ../../../redis/hiredis/fmacros.h \
+    ../../../redis/hiredis/hiredis.h \
+    ../../../redis/hiredis/net.h \
+    ../../../redis/hiredis/read.h \
+    ../../../redis/hiredis/sds.h \
+    ../../../redis/hiredis/sdsalloc.h \
+    ../qt_redis/qt_redis_sync_connection.h \
+    source/gui/line_edit_ware_name.h \
+    source/utils/ware_name_text2.h
 
 
 MOC_DIR = ./xmoc

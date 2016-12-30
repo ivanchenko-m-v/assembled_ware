@@ -1,7 +1,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 24-05-2016
-///		Date update	: 29-06-2016
+///		Date update	: 30-12-2016
 ///		Comment		:
 /// ============================================================================
 #ifndef __BUSINESS_LOGIC_H__
@@ -40,6 +40,9 @@ namespace assembled_ware
     /// model_ware
         data_model_ware* model_ware( ) const
         { return this->_model_ware; }
+    /// model_ware_search
+        data_model_ware* model_ware_search( ) const
+        { return this->_model_ware_search; }
     /// ------------------------------------------------------------------------
     /// model_ware_specification
         data_model_ware_specification* model_ware_specification( ) const
@@ -55,6 +58,7 @@ namespace assembled_ware
         void free_memory( );
     /// ------------------------------------------------------------------------
 		void init_model_ware( );
+		void init_model_ware_search( );
 		void init_model_ware_specification( );
 
 	public:
@@ -63,7 +67,8 @@ namespace assembled_ware
 	/// ------------------------------------------------------------------------
 		void exit( );
 	/// ------------------------------------------------------------------------
-		void ware_select();
+		void ware_select( );
+		void ware_detail_select( const QString &text );
 
 
 	/// ========================================================================
@@ -77,6 +82,7 @@ namespace assembled_ware
 	/// ========================================================================
 	private:
 		data_model_ware *_model_ware = nullptr;
+		data_model_ware *_model_ware_search = nullptr;
 		data_model_ware_specification *_model_specification = nullptr;
 
 	};//class business_logic

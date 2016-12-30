@@ -79,7 +79,8 @@ private:
 	}
 
 	void send_command( )
-	{/*
+	{
+	/*
 		QByteArray block;
 		QDataStream out( &block, QIODevice::WriteOnly );
 		out.setVersion(QDataStream::Qt_5_5);

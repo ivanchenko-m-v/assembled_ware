@@ -2,7 +2,7 @@
 /// ============================================================================
 ///		Author		: M. Ivanchenko
 ///		Date create	: 19-07-2016
-///		Date update	: 19-07-2016
+///		Date update	: 30-12-2016
 ///		Comment		:
 /// ============================================================================
 #include <QHeaderView>
@@ -17,7 +17,7 @@
 #include "business_logic.h"
 
 #include "combobox_detail.h"
-#include "data_model_detail_search.h"
+#include "data_model_ware.h"
 #include "data_ware.h"
 
 namespace assembled_ware
@@ -93,13 +93,16 @@ namespace assembled_ware
     {
 		this->setInsertPolicy( InsertAtTop );
 		this->setEditable(true);
-
+/*
 		this->addItem( "" );
 		this->addItem( "test" );
 		this->addItem( "test 1" );
-
+*/
+		this->setModel( application::the_business_logic( ).model_ware_search( ) );
+/*
 		QCompleter *completer = new QCompleter(this->model());
 		this->setCompleter(completer);
+		*/
 	}
 
     /// ========================================================================
@@ -110,17 +113,21 @@ namespace assembled_ware
     /// ------------------------------------------------------------------------
     void combobox_detail::keyPressEvent( QKeyEvent * event )
     {
-        /*
-        if( event->key( ) == Qt::Key_N )
-        {
-            if( event->modifiers( ) & Qt::ControlModifier )
-            {
-                this->slot_add_request( );
-            }
-        }
-        */
-        QComboBox::keyPressEvent( event );
-    }
+		QComboBox::keyPressEvent( event );
+	}
+
+    /// ------------------------------------------------------------------------
+    /// keyPressEvent ( QKeyEvent * event )
+    /// ------------------------------------------------------------------------
+	void combobox_detail::keyReleaseEvent(QKeyEvent *event)
+	{
+		int n_key = event->key( );
+		if( n_key == Qt::Key_Enter || n_key == Qt::Key_Return )
+		{
+			application::the_business_logic( ).ware_detail_select( this->currentText( ) );
+		}
+		QComboBox::keyReleaseEvent( event );
+	}
 
     /// ========================================================================
     ///		SLOTS
